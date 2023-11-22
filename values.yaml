@@ -1,0 +1,18 @@
+replicaCount: 2
+
+image:
+  repository: "thuanlee215/tecommerce:backend"
+  port: 8000
+  pullPolicy: IfNotPresent
+
+resource:
+  cpu: 50m
+
+autoscaling:
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 20
+
+service:
+  port: 8000
+  targetPort: 8000

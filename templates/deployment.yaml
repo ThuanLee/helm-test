@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: MYAPP
+spec:
+  selector:
+    matchLabels:
+      app: MYAPP
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: MYAPP
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image.repository }}
+        resources:
+          limits:
+            cpu: {{ .Values.resource.cpu }}
+        ports:
+        - containerPort: {{ .Values.image.port }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}

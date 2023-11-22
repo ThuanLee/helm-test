@@ -1,0 +1,63 @@
+---
+# Source: helm-test/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: tecommerce
+  namespace: default
+spec:
+  selector:
+    app: MYAPP
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+---
+# Source: helm-test/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tecommerce
+  namespace: default
+  labels:
+    app: MYAPP
+spec:
+  selector:
+    matchLabels:
+      app: MYAPP
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: MYAPP
+    spec:
+      containers:
+      - name: tecommerce
+        image: thuanlee215/tecommerce:backend
+        resources:
+          limits:
+            cpu: 50m
+        ports:
+        - containerPort: 8000
+        imagePullPolicy: IfNotPresent
+---
+# Source: helm-test/templates/hpa.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: tecommerce
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: tecommerce
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 20

@@ -1,0 +1,34 @@
+apiVersion: v1
+entries:
+  helm-test:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-11-22T17:30:25.127001437+07:00"
+    description: A test repo with helm and k8s
+    digest: 09f846d2ec3890ef0e7374a48fea9c3e68ad56a929c9a478080b7730c5e56afe
+    name: helm-test
+    type: application
+    urls:
+    - packages/helm-test-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-11-22T17:30:25.126775291+07:00"
+    description: A Helm chart for Kubernetes
+    digest: c73c9877362099a520cae78faed720ed4849d0a2a147de2ed2ba888611012980
+    name: helm-test
+    type: application
+    urls:
+    - packages/helm-test-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-11-22T17:30:25.126591189+07:00"
+    description: A Helm chart for Kubernetes
+    digest: b7236d5e051bdf8f8e1b84fea04ce3d4b4ece1a86a95c670a60e1b0f685a2973
+    name: helm-test
+    type: application
+    urls:
+    - packages/helm-test-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-11-22T17:30:25.126328516+07:00"
